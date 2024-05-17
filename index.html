@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            list-style: number;
+        }
+        p{
+            line-height: 4px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="Barang Yang Dibeli" id="barang">
+    <input type="number" placeholder="Jumlah Yang dibeli" id="jumlah">
+    <button onclick="tambahBarang()">Submit</button>
+
+    <ul id="daftar-barang">
+        <li>
+            <span id="daftar-barang"></span>
+            <span id="jumlah-barang"></span>
+        </li>
+    </ul>
+
+    <script>
+        const barangInput = localStorage.getItem('barang');
+        const jumlahInput = localStorage.getItem('jumlah');
+        if (barangInput && jumlahInput) {
+            document.getElementById('barang').value = barangInput;
+            document.getElementById('jumlah').value = jumlahInput;
+            tambahBarang();
+        }
+
+        function tambahBarang() {
+            const barang = document.getElementById('barang').value;
+            const jumlah = document.getElementById('jumlah').value;
+            localStorage.setItem('barang', barang);
+            localStorage.setItem('jumlah', jumlah);
+            document.getElementById('daftar-barang').innerHTML += 
+            `<li>
+                <p id="${barang}"> Nama barang : ${barang}</p>
+                <p id="${jumlah}"> Jumlah : ${jumlah}</p>
+            </li>`;
+        }
+    </script>
+
+</body>
+</html>
+
